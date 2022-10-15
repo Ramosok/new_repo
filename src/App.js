@@ -1,24 +1,21 @@
-import { useState } from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import PageHome from "./pages/PageHome";
+import { PageTodo } from "./pages/PageTodo";
+import Header from "./components/Header";
+import { PersonalAccount } from "./pages/PersonalAccount";
+
+import "./App.css";
 
 function App() {
-  const BASE_URL = "https://jsonplaceholder.typicode.com";
-  const [id, setId] = useState(1);
-
-  fetch(`${BASE_URL}/todos/${id}`)
-    .then((response) => response.json())
-    .then((json) => console.log(json));
-
   return (
-    <div onClick={(event) => setId(event.target.id)}>
-      <button id="2">inck</button>
-      <button id="34">decr</button>
-      <button id="27">decr</button>
-      <button id="55">decr</button>
-      <button id="11">decr</button>
-      <button id="89">decr</button>
-      <button id="90">decr</button>
-      <button id="92">decr</button>
-      <button id="96">decr</button>
+    <div className="app">
+      <Header />
+      <Routes>
+        <Route path="/" element={<PageHome />} />
+        <Route path="todo" element={<PageTodo />} />
+        <Route path="personal_account" element={<PersonalAccount />} />
+      </Routes>
     </div>
   );
 }

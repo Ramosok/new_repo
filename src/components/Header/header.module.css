@@ -1,0 +1,27 @@
+.header {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  height: 100px;
+  background-color: #ff00e5;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.user_info {
+  grid-column: 6 / 7;
+}
+
+.user_info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+figcaption {
+  text-align: center;
+}
+figure {
+  width: 60px;
+  height: 60px;
+}
