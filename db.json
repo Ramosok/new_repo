@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Заголовок",
+      "body": "Некая информация"
+    },
+    {
+      "id": "2f30c617-5860-4cfd-8815-7c50e92a3707",
+      "title": "test",
+      "body": "test"
+    },
+    {
+      "id": "6999d2c0-eacd-4c46-8128-e6bf3a0a6378",
+      "title": "test 22222",
+      "body": "test 22222"
+    },
+    {
+      "id": ":r0:",
+      "title": "33432",
+      "body": "34242342"
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "name": "Саша",
+      "img": "https://bipbap.ru/wp-content/uploads/2021/07/1551512888_2-730x617.jpg"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
