@@ -1,26 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./header.module.css";
-import { getUser } from "../../api/userServises";
+
 import { UserInfo } from "./UserInfo";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
-  const [user, setUser] = useState({});
-
-  const loadUser = useCallback(async () => {
-    const data = await getUser("user", 1);
-    if (data.status < 400) {
-      const user = await data.json();
-      setUser(user);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadUser();
-  }, [loadUser]);
+  const { pathname } = useLocation();
 
   return (
     <div className={style.header}>
-      <UserInfo user={user} />
+      {pathname !== "/" && <Link to="/">Назад</Link>}
+      <UserInfo />
     </div>
   );
 };

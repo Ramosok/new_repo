@@ -8,7 +8,6 @@ export const getUser = (path, id) => {
 };
 
 export const editUser = (path, id, newName) => {
-  console.log(newName);
   const newPath = `${path}/${id}`;
   return sendRequest({
     baseUrl,
