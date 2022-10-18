@@ -24,7 +24,11 @@
   "user": [
     {
       "id": 1,
-      "name": "Саша",
+      "nickName": "Dimas",
+      "firstName": "Дима",
+      "lastName": "Иванов",
+      "age": 22,
+      "sex": "мужской",
       "img": "https://bipbap.ru/wp-content/uploads/2021/07/1551512888_2-730x617.jpg"
     }
   ],
