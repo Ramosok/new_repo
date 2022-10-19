@@ -7,7 +7,6 @@ import { UserContext } from "../../../App";
 export const UserInfo = () => {
   let user = useContext(UserContext);
   //const [name, setName] = useState(user);
-  console.log(user);
 
   // const handleChange = async () => {
   //   const data = await editUser("user", 1, name);
