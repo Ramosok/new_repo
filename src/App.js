@@ -7,30 +7,45 @@ import { PersonalAccount } from "./pages/PersonalAccount";
 import { getUser } from "./api/userServises";
 
 import "./App.css";
+import { useFetch } from "./CustomHooks/useFetch";
+import { getUserCity } from "./api/userLocationServis";
 
 export const UserContext = createContext({});
 
 function App() {
   const [user, setUser] = useState({});
 
-  const loadUser = useCallback(async () => {
-    const data = await getUser("user", 1);
-    if (data.status < 400) {
-      const user = await data.json();
-      setUser(user);
-    }
-  }, []);
+  const [userLocation, fetchFunc] = useFetch(getUserCity);
+
+  // const [searchCity, setSearchCity] = useState("");
+
+  // const loadUser = useCallback(async () => {
+  //   const data = await getUser("user", 1);
+  //   if (data.status < 400) {
+  //     const user = await data.json();
+  //     setUser(user);
+  //   }
+  // }, []);
 
   useEffect(() => {
-    loadUser();
-  }, [loadUser]);
+    fetchFunc();
+  }, [fetchFunc]);
 
   return (
     <div className="app">
       <UserContext.Provider value={user}>
         <Header />
         <Routes>
-          <Route path="/" element={<PageHome />} />
+          <Route
+            path="/"
+            element={
+              userLocation ? (
+                <PageHome userLocation={userLocation} />
+              ) : (
+                <div>Loading....</div>
+              )
+            }
+          />
           <Route path="todo" element={<PageTodo />} />
           <Route path="personal_account" element={<PersonalAccount />} />
         </Routes>
