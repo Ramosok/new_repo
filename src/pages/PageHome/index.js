@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getWeacher } from "../../api/wheacherServis";
+import { getWeacher } from "../../api/wheacherServises";
 import { useFetch } from "../../CustomHooks/useFetch";
+import { getUserCity } from "../../api/userLocationServises";
 
-const PageHome = ({ userLocation }) => {
+const PageHome = () => {
   const [searchCity, setSearchCity] = useState("");
 
-  const [weather, fetchFunc] = useFetch(getWeacher, userLocation?.city);
+  const [userLocation, fetchFuncUserLocation] = useFetch(getUserCity);
+
+  const [weather, fetchFunc] = useFetch(getWeacher);
 
   const handleChangeCity = (event) => {
     const city = event.target.value;
@@ -13,12 +16,15 @@ const PageHome = ({ userLocation }) => {
   };
 
   const handleGetWeather = () => {
-    //fetchFunc();
+    fetchFunc(searchCity);
   };
 
   useEffect(() => {
-    fetchFunc();
-  }, [userLocation]);
+    fetchFuncUserLocation();
+    if (userLocation) {
+      fetchFunc(userLocation?.city);
+    }
+  }, [userLocation?.city]);
 
   console.log(weather);
 
