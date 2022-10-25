@@ -1,33 +1,22 @@
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, { createContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import PageHome from "./pages/PageHome";
 import { PageTodo } from "./pages/PageTodo";
 import Header from "./components/Header";
 import { PersonalAccount } from "./pages/PersonalAccount";
-import { getUser } from "./api/userServises";
 
 import "./App.css";
+import { getUser } from "./api/userServises";
+import { useFetch } from "./CustomHooks/useFetch";
 
 export const UserContext = createContext({});
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, getUserInfo] = useFetch(getUser);
 
-  //const [userLocation, fetchFunc] = useFetch(getUserCity);
-
-  // const [searchCity, setSearchCity] = useState("");
-
-  // const loadUser = useCallback(async () => {
-  //   const data = await getUser("user", 1);
-  //   if (data.status < 400) {
-  //     const user = await data.json();
-  //     setUser(user);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchFunc();
-  // }, [fetchFunc]);
+  useEffect(() => {
+    getUserInfo("user", 1);
+  }, []);
 
   return (
     <div className="app">
@@ -36,7 +25,10 @@ function App() {
         <Routes>
           <Route path="/" element={<PageHome />} />
           <Route path="todo" element={<PageTodo />} />
-          <Route path="personal_account" element={<PersonalAccount />} />
+          <Route
+            path="personal_account"
+            element={user && <PersonalAccount />}
+          />
         </Routes>
       </UserContext.Provider>
     </div>

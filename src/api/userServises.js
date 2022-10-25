@@ -7,13 +7,13 @@ export const getUser = (path, id) => {
   return sendRequest({ baseUrl, path: newPath });
 };
 
-export const editUser = (path, id, newName) => {
+export const editUser = (path, id, newData) => {
   const newPath = `${path}/${id}`;
   return sendRequest({
     baseUrl,
     path: newPath,
     method: "PUT",
-    body: newName,
+    body: newData,
     headers: {
       "Content-Type": "application/json",
     },
