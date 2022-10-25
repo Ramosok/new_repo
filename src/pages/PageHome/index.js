@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getWeacher } from "../../api/wheacherServises";
 import { useFetch } from "../../CustomHooks/useFetch";
 import { getUserCity } from "../../api/userLocationServises";
+import { backgroundMaper } from "../../constats";
 
 import style from "./home_page.module.css";
-
-const backgroundMaper = {
-  Clouds: "clouds",
-  Rain: "rain",
-  Clear: "clear",
-};
 
 const PageHome = () => {
   const [searchCity, setSearchCity] = useState("");
@@ -24,7 +19,8 @@ const PageHome = () => {
     setSearchCity(city);
   };
 
-  const handleGetWeather = () => {
+  const handleGetWeather = (event) => {
+    event.preventDefault();
     fetchFunc(searchCity);
   };
 
@@ -48,15 +44,25 @@ const PageHome = () => {
       // }
       className={style[`${backgroundMaper[weather?.weather[0]?.main]}`]}
     >
-      <input value={searchCity} type="text" onChange={handleChangeCity} />
-      <button onClick={handleGetWeather}>
-        Посмотреть погоду в другом городе
-      </button>
-
-      <h3 style={{ textAlign: "center" }}>{weatherCity.name}</h3>
-      <h4 style={{ textAlign: "center" }}>
+      <form onSubmit={handleGetWeather}>
+        <input value={searchCity} type="text" onChange={handleChangeCity} />
+        <button type="submit">Посмотреть погоду в другом городе</button>
+      </form>
+      <h1 style={{ textAlign: "center" }}>{weatherCity.name}</h1>
+      <h2 style={{ textAlign: "center" }}>
         {Math.round(+weatherCity.main?.temp - 273)}°C
-      </h4>
+      </h2>
+      <div>
+        <h3 style={{ textAlign: "center" }}>
+          Ощущение - {Math.round(+weather?.main.feels_like - 273)}°C
+        </h3>
+        <h3 style={{ textAlign: "center" }}>
+          Влажность - {weather?.main.humidity}
+        </h3>
+        <h3 style={{ textAlign: "center" }}>
+          Давление - {weather?.main.pressure}
+        </h3>
+      </div>
     </div>
   );
 };
