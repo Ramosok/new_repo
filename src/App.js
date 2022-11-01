@@ -4,10 +4,11 @@ import PageHome from "./pages/PageHome";
 import { PageTodo } from "./pages/PageTodo";
 import Header from "./components/Header";
 import { PersonalAccount } from "./pages/PersonalAccount";
-
-import "./App.css";
 import { getUser } from "./api/userServises";
 import { useFetch } from "./CustomHooks/useFetch";
+import { PageCounter } from "./pages/PageCounter";
+
+import "./App.css";
 
 export const UserContext = createContext({});
 
@@ -23,6 +24,7 @@ function App() {
       <UserContext.Provider value={user}>
         <Header />
         <Routes>
+          <Route path="/counter" element={<PageCounter />} />
           <Route path="/" element={<PageHome />} />
           <Route path="todo" element={<PageTodo />} />
           <Route

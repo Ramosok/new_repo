@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./header.module.css";
 
 import { UserInfo } from "./UserInfo";
@@ -10,6 +10,7 @@ const Header = () => {
   return (
     <div className={style.header}>
       {pathname !== "/" && <Link to="/">Назад</Link>}
+      <Link to="/counter">counter</Link>
       <UserInfo />
     </div>
   );
